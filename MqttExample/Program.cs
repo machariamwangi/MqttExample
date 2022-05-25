@@ -1,5 +1,6 @@
 ﻿using RabbitMQ.Client;
 using System;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace MqttExample
@@ -37,6 +38,12 @@ namespace MqttExample
             Console.WriteLine("Creating Binding");
             model.QueueBind("demoqueue", "demoExchange", "directexchange_key");
 
+            var properties = model.CreateBasicProperties();
+            properties.Persistent = false;
+
+            byte[] messageBuffer = Encoding.Default.GetBytes("Direct Message");
+            model.BasicPublish("demoExchange", "directexchange_key", properties, messageBuffer);
+            Console.WriteLine("Message Sent");
             Console.ReadLine();
 
         }
