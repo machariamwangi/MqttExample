@@ -41,7 +41,11 @@ namespace RabbitMQConsumer
 
             MessageReceiver messageReceiver = new MessageReceiver(channel);
 
-            channel.BasicConsume("demoqueue", false, messageReceiver);
+            //basic consume
+            //channel.BasicConsume("demoqueue", false, messageReceiver);
+
+            //Direct exchange
+            channel.BasicConsume("request.queue", false, messageReceiver);
 
             Console.ReadLine();
         }

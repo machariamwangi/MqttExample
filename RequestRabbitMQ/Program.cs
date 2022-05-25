@@ -7,6 +7,11 @@ namespace RequestRabbitMQ
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
+            Directmessages directmessages = new Directmessages();
+
+            directmessages.SendMessage();
+
+            Console.ReadLine();
         }
     }
 }
